@@ -5,7 +5,7 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 
-
+app.use("/api", require("./routes"));
 app.use((err, req, res, next) => {
   console.log(err);
   return res.status(500).json({
