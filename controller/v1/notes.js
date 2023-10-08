@@ -2,7 +2,7 @@ const db = require("../../db");
 
 async function createNote(req, res, next) {
   try {
-    const { title, content, author } = req.body;
+    const { title, content, author } = req.body.data;
     await db("notes").insert({
       title,
       content,
