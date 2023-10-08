@@ -8,7 +8,7 @@ async function createNote(req, res, next) {
       content,
       author,
     });
-    return res.json(req.body);
+    return res.status(201).json(req.body);
   } catch (error) {
     console.log(error);
     return next(error);
