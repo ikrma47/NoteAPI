@@ -15,6 +15,23 @@ async function createNote(req, res, next) {
   }
 }
 
+async function getNotes(req, res, next) {
+  try {
+    const items = await db
+      .select("id", "title", "content", "author", "date")
+      .from("notes")
+      .where("is_deleted", false);
+
+    return res.json({
+      data: { items },
+    });
+  } catch (error) {
+    console.log(error);
+    return next(error);
+  }
+}
+
 module.exports = {
   createNote,
+  getNotes,
 };
