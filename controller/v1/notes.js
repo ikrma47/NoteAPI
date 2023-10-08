@@ -31,7 +31,19 @@ async function getNotes(req, res, next) {
   }
 }
 
+async function deleteNote (req, res, next) {
+  try {
+    const { id } = req.params;
+    await db("notes").where("id", id).update("is_deleted", true);
+    return res.sendStatus(204)
+  } catch (error) {
+    console.log(error);
+    return next(error);
+  }
+}
+
 module.exports = {
   createNote,
   getNotes,
+  deleteNote,
 };
